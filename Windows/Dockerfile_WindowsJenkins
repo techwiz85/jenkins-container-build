@@ -1,0 +1,15 @@
+# escape=`
+FROM windows-java:jre1.8.0_91
+
+ENV JENKINS_HOME C:\jenkins
+ENV JENKINS_VERSION 2.0
+RUN mkdir C:\jenkins
+RUN powershell -Command `
+    "wget -Uri https://updates.jenkins-ci.org/download/war/2.219/jenkins.war `
+     -UseBasicParsing `
+     -OutFile /jenkins/jenkins.war"
+
+EXPOSE 8080
+EXPOSE 50000
+
+CMD [ "java","-jar", "$JENKINS_HOME\jenkins.war" ]

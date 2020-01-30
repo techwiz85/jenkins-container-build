@@ -1,5 +1,6 @@
 # Creating a Jenkins server that can build .NET Core apps
 
+[Jenkins Running in a Container](https://github.com/jenkinsci/docker/blob/master/README.md)
 * Docker command to build the Jenkins server image that includes the .NET Core SDK:
   ```bash
   docker build --rm -f "Dockerfile" -t jenkins-dotnet-build:3.1 "."
