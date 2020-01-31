@@ -1,20 +1,22 @@
 # escape=`
-FROM windows-java:jre1.8.0_91
+FROM windows/java:latest
 
-ENV JENKINS_HOME C:\jenkins
-ENV JENKINS_VERSION 2.0
-RUN mkdir C:\jenkins
+ENV JENKINS_HOME C:\jenkins\master
+ENV JENKINS_VERSION 2.219
+ENV JENKINS_WAR_FILE C:\jenkins\jenkins.war
+
+RUN mkdir %JENKINS_HOME%
+
 RUN powershell -Command `
     "wget -Uri https://updates.jenkins-ci.org/download/war/2.219/jenkins.war `
      -UseBasicParsing `
-     -OutFile /jenkins/jenkins.war"
+     -OutFile $env:JENKINS_WAR_FILE"
 
 EXPOSE 8080
 EXPOSE 50000
 
-CMD java -Xrs -Xmx256m `
-    -Dhudson.lifecycle=hudson.lifecycle.WindowsServiceLifecycle `
-    -jar %JENKINS_HOME%\\jenkins.war
+CMD java -Xrs -Xmx256m -jar %JENKINS_WAR_FILE%
 
 # docker build --rm -f Dockerfile_WindowsJenkins -t windows/jenkins:latest .
 # docker run -d -p 8081:8080 -p 50001:50000 windows/jenkins:latest
+# docker run -d -v jenkins_home:C:\jenkins\master -p 8081:8080 -p 50001:50000 windows/jenkins:latest
