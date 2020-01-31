@@ -1,8 +1,11 @@
 # Creating a Jenkins server that can build .NET Core apps
 
 [Jenkins Running in a Container](https://github.com/jenkinsci/docker/)
+
 [Jenkins Dockerfile](https://github.com/jenkinsci/docker/blob/master/Dockerfile)
+
 [Docker Builder Reference](https://docs.docker.com/engine/reference/builder)
+
 [Jenkins Release Build Downloads](https://updates.jenkins-ci.org/download/war/)
 
 * Docker command to build the Windows ServerCore based Java image:

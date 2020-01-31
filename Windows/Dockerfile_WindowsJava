@@ -11,4 +11,6 @@ RUN powershell -Command `
 ENV JAVA_HOME c:\Java\jre1.8.0_91
 RUN setx PATH %PATH%;%JAVA_HOME%\bin
 
-CMD [ "java.exe" ]
+CMD [ "java.exe", "-version" ]
+
+#  docker build --rm -f Dockerfile_WindowsJava -t windows-java:jre1.8.0_91 .

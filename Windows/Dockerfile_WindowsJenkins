@@ -12,4 +12,9 @@ RUN powershell -Command `
 EXPOSE 8080
 EXPOSE 50000
 
-CMD [ "java","-jar", "$JENKINS_HOME\jenkins.war" ]
+CMD java -Xrs -Xmx256m `
+    -Dhudson.lifecycle=hudson.lifecycle.WindowsServiceLifecycle `
+    -jar %JENKINS_HOME%\\jenkins.war
+
+# docker build --rm -f Dockerfile_WindowsJenkins -t windows/jenkins:latest .
+# docker run -d -p 8081:8080 -p 50001:50000 windows/jenkins:latest
